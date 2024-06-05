@@ -5,7 +5,6 @@ import com.bxcode.components.helpers.CommonHelper;
 import com.bxcode.dto.Event;
 import com.bxcode.dto.TransactionMessage;
 import com.bxcode.dto.TransactionRequest;
-import com.bxcode.dto.request.Account;
 import com.bxcode.events.outbounds.contracts.IBrokerProducerTransaction;
 import com.bxcode.services.contracts.ITransactionService;
 import lombok.extern.log4j.Log4j2;

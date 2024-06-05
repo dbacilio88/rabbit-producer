@@ -1,8 +1,12 @@
 package com.bxcode.dto;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
+import java.io.Serial;
 import java.io.Serializable;
 
 /**
@@ -26,7 +30,10 @@ import java.io.Serializable;
 @NoArgsConstructor
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class BrokerConfiguration implements Serializable {
-    private static final long serialVersionUID = -5454798761785012662L;
+
+    @Serial
+    private static final long serialVersionUID = 6301297074691774337L;
+
     private String queue;
     private String command;
     private String routingKey;

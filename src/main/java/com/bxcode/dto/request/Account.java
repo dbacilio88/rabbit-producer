@@ -6,6 +6,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.io.Serial;
 import java.io.Serializable;
 
 /**
@@ -28,6 +29,7 @@ import java.io.Serializable;
 @NoArgsConstructor
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class Account implements Serializable {
+    @Serial
     private static final long serialVersionUID = 4556859726317894317L;
     private String accountId;
     private String name;

@@ -5,7 +5,6 @@ import com.bxcode.components.annotations.BrokerPublisher;
 import com.bxcode.components.configurations.MicroserviceMessageConfiguration;
 import com.bxcode.components.enums.EventType;
 import com.bxcode.components.exceptions.BrokerConfigurationException;
-import com.bxcode.components.helpers.Environments;
 import com.bxcode.components.helpers.RoutingKeyHelper;
 import com.bxcode.dto.Event;
 import com.bxcode.dto.TransactionMessage;

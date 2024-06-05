@@ -6,6 +6,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.io.Serial;
 import java.io.Serializable;
 
 /**
@@ -29,6 +30,7 @@ import java.io.Serializable;
 @NoArgsConstructor
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class BrokerCommonConfiguration implements Serializable {
+    @Serial
     private static final long serialVersionUID = -5454798761785012662L;
     private String queueName;
     private String routingKeyOrigin;
