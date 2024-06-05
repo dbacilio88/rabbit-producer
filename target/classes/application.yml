@@ -1,0 +1,71 @@
+# Embedded Server configuration
+server:
+  port: 8001
+  compression:
+    enabled: true
+  tomcat:
+    uri-encoding: UTF-8
+  error:
+    include-stacktrace: never
+
+# Spring Configuration
+spring:
+  webflux:
+    base-path: /bxcode/producer
+  application:
+    name: rabbit-producer
+    version: 1.0.0
+    log: /logs
+  messages:
+    encoding: UTF-8
+  version: 2.7.18
+  main:
+    banner-mode: log
+    lazy-initialization: false
+  mvc:
+    converters:
+      preferred-json-mapper: jsonb
+
+# Logging Configuration
+logging:
+  level:
+    root: INFO
+# App Configuration
+microservices:
+  entityUuid: 2ad7cc3c-5d24-491d-a465-d6c2f1a3ce3d
+
+# Broker Configuration producer
+broker-configuration:
+
+  common-configuration:
+    #queue-name: ${HOSTNAME}
+    queue-name: HOSTNAME
+    #routing-key-origin: MD-${broker-configuration.common-configuration.queue-name}
+    routing-key-origin: RABBIT-PRODUCER
+    broker-declare-exchange: EX-BROKER-RABBIT
+    broker-declare-exchange-type: TOPIC
+
+  broker-response-consumer:
+    #queue: QU-RABBIT-PRODUCER-TRANSACTION-${broker-configuration.common-configuration.queue-name}
+    queue: QU-RABBIT-PRODUCER-RESPONSE-TRANSACTION-HOSTNAME
+    command: RESPONSE
+    #routing-key: SERVICE.RABBIT-CONSUMER.${broker-configuration.common-configuration.routing-key-origin}.TRANSACTION.RESPONSE
+    routing-key: SERVICE.RABBIT-CONSUMER.RABBIT-PRODUCER.TRANSACTION.RESPONSE
+    routing-domain: TRANSACTION
+    routing-key-origin: RABBIT-CONSUMER
+    #routing-key-destiny: ${broker-configuration.common-configuration.routing-key-origin}
+    routing-key-destiny: RABBIT-PRODUCER
+
+  broker-request-producer:
+    command: REQUEST
+    #routing-key: SERVICE.${broker-configuration.common-configuration.routing-key-origin}.RABBIT-CONSUMER.TRANSACTION.REQUEST
+    routing-key: SERVICE.RABBIT-PRODUCER.RABBIT-CONSUMER.TRANSACTION.REQUEST
+    routing-domain: TRANSACTION
+    #routing-key-origin: ${broker-configuration.common-configuration.routing-key-origin}
+    routing-key-origin: RABBIT-PRODUCER
+    routing-key-destiny: RABBIT-CONSUMER
+
+# Jobs configuration:
+event-transaction:
+  enable: true
+  cron: "*/58 *  * ? * *"
